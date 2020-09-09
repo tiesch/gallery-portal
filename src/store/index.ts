@@ -1,11 +1,21 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { StoreOptions } from "vuex";
+import { GalleryState } from "@/modules/gallery/store/gallery.state";
+import { RootState } from "@/interfaces/Gallery";
+import { gallery } from "@/modules/gallery/store";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+const store: StoreOptions<RootState> = {
+  modules: {
+    gallery
+  }
+};
+
+export interface ModulesState {
+  gallery: GalleryState;
+}
+
+export type StoreState = RootState & ModulesState;
+
+export default new Vuex.Store(store);

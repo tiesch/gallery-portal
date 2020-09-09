@@ -1,0 +1,27 @@
+.fullPicture {
+  min-height: 450px;
+}
+
+.progressive {
+  max-width: 100% !important;
+  z-index: 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: -28px;
+  right: -34px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  background-color: #000;
+  color: white;
+  border: none;
+}
+
+.pictureInfo {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,32 +1,24 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div id="app" style="display:flex; flex-direction:column; height: 100vh;">
+    <router-view id="app-container"></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { name as galleryModuleName } from "@/modules/gallery/store";
+import { namespace } from "vuex-class";
+import { actionTypes as galleryActionTypes } from "@/modules/gallery/store/gallery.types";
 
-#nav {
-  padding: 30px;
+const galleryModule = namespace(galleryModuleName);
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+@Component
+export default class App extends Vue {
+  @galleryModule.Action(galleryActionTypes.GET_PICTURES)
+  public getPage!: (page: number, limit: number) => void;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  public created() {
+    this.getPage(1, 9);
   }
 }
-</style>
+</script>
